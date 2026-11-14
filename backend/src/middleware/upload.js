@@ -1,0 +1,26 @@
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const multer = require('multer');
+require('dotenv').config(); // Pastikan dotenv terbaca di sini
+
+// Konfigurasi Kredensial Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// Konfigurasi Mesin Penyimpanan
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'koran-gala-assets',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
+    transformation: [{ width: 1200, crop: 'limit' }],
+  },
+});
+
+const upload = multer({ storage: storage });
+
+// EKSPOR DENGAN FORMAT YANG BENAR
+module.exports = { upload, cloudinary };

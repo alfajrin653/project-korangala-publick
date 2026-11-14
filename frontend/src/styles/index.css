@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-obsidian text-ink font-body antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading;
+  }
+  ::selection {
+    @apply bg-cyan/30 text-white;
+  }
+}
+
+@layer components {
+  .kg-card {
+    @apply bg-charcoal border border-white/5 rounded-xl;
+  }
+  .kg-badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold font-mono tracking-wide;
+  }
+  .kg-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
